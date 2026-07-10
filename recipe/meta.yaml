@@ -1,23 +1,23 @@
-{% set name = "shellescape" %}
 {% set version = "3.8.1" %}
 
 package:
-  name: "{{ name|lower }}"
+  name: shellescape
   version: "{{ version }}"
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/s/shellescape/shellescape-{{ version }}.tar.gz
   sha256: 40b310b30479be771bf3ab28bd8d40753778488bd46ea0969ba0b35038c3ec26
 
 build:
-  number: 1
+  number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation"
 
 requirements:
   host:
     - pip
     - python {{ python_min }}
+    - setuptools
   run:
     - python >={{ python_min }}
 
